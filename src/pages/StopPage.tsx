@@ -7,6 +7,8 @@ function StopPage() {
   const [stop, setStop] = useState<any>(null);
 
   useEffect(() => {
+    if (!slug) return; // Prevent running too early
+  
     async function fetchStop() {
       const { data, error } = await supabase
         .from('tour_stops')
@@ -29,6 +31,7 @@ function StopPage() {
   
     fetchStop();
   }, [slug]);
+  
   
 
   if (!stop) {
