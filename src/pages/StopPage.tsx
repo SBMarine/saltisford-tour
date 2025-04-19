@@ -13,18 +13,23 @@ function StopPage() {
         .select('*')
         .eq('slug', slug)
         .single();
-
-      console.log("Slug:", slug);
-      console.log("Data:", data);
-      console.log("Error:", error);
-
+  
+      console.log("🔍 Fetching stop for slug:", slug);
+      console.log("📦 Data:", data);
+      console.log("⚠️ Error:", error);
+  
+      if (error) {
+        console.error("🚨 Supabase error:", error.message);
+      }
+  
       if (data) {
         setStop(data);
       }
     }
-
+  
     fetchStop();
   }, [slug]);
+  
 
   if (!stop) {
     return (
