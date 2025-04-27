@@ -24,7 +24,7 @@ function StopPage() {
       <div style={{
         padding: '2rem',
         fontFamily: 'Merriweather, serif',
-        backgroundImage: 'url("/saltisford-logo.jpg")',
+        backgroundImage: 'url("saltisford-logo.jpg")',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center top',
