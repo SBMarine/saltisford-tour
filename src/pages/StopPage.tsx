@@ -17,15 +17,22 @@ function StopPage() {
       console.log("🔍 Fetching stop for slug:", slug);
       console.log("📦 Data:", data);
       console.log("⚠️ Error:", error);
-      if (error) console.error("🚨 Supabase error:", error.message);
-      if (data) setStop(data);
+
+      if (error) {
+        console.error("🚨 Supabase error:", error.message);
+      }
+
+      if (data) {
+        setStop(data);
+      }
     }
+
     fetchStop();
   }, [slug]);
 
   if (!stop) {
     return (
-      <div style={{ padding: '2rem', fontFamily: 'serif', backgroundColor: '#f9f5ec' }}>
+      <div style={{ padding: '2rem', color: 'white', textAlign: 'center' }}>
         <h2>Loading or no data...</h2>
         <p>Slug: {slug}</p>
       </div>
@@ -33,53 +40,36 @@ function StopPage() {
   }
 
   return (
-    <div
-      style={{
-        padding: '2rem',
-        maxWidth: '800px',
-        margin: '0 auto',
-        backgroundColor: '#fdfaf3',
-        fontFamily: "'Merriweather', serif",
-        border: '2px solid #8b5e3c',
-        borderRadius: '12px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        color: '#3d2b1f',
-      }}
-    >
-      <h1
-        style={{
-          fontSize: '2.2rem',
-          borderBottom: '2px solid #8b5e3c',
-          paddingBottom: '0.5rem',
-          marginBottom: '1.5rem',
-          color: '#5a3e2b',
-        }}
-      >
+    <div style={{
+      minHeight: '100vh',
+      background: `url('/Saltisford Canal Trust logo.jpg') no-repeat center center fixed`,
+      backgroundSize: 'contain',
+      backgroundColor: '#2d4a31', // Canal green fallback
+      fontFamily: 'Merriweather, serif',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '2rem',
+      textAlign: 'center',
+      color: 'white',
+    }}>
+      <h1 style={{ marginBottom: '1rem', backgroundColor: 'rgba(45, 74, 49, 0.7)', padding: '0.5rem 1rem', borderRadius: '8px' }}>
         {stop.title}
       </h1>
-
       <audio
         controls
         src={stop.audio_url}
         style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          padding: '1rem',
+          borderRadius: '10px',
           width: '100%',
-          marginBottom: '1.5rem',
-          borderRadius: '8px',
-          backgroundColor: '#ede3d9',
-          padding: '0.5rem',
+          maxWidth: '600px',
+          marginBottom: '1rem',
         }}
       />
-
-      <p
-        style={{
-          fontSize: '1.1rem',
-          lineHeight: '1.6',
-          backgroundColor: '#fffdf7',
-          padding: '1rem',
-          border: '1px solid #d4c2a5',
-          borderRadius: '8px',
-        }}
-      >
+      <p style={{ backgroundColor: 'rgba(45, 74, 49, 0.7)', padding: '1rem', borderRadius: '8px' }}>
         {stop.description}
       </p>
     </div>
