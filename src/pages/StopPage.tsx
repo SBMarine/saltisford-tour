@@ -13,38 +13,18 @@ function StopPage() {
         .select('*')
         .eq('slug', slug)
         .single();
-
-      console.log("🔍 Fetching stop for slug:", slug);
-      console.log("📦 Data:", data);
-      console.log("⚠️ Error:", error);
-
-      if (error) {
-        console.error("🚨 Supabase error:", error.message);
-      }
-
-      if (data) {
-        setStop(data);
-      }
+      if (data) setStop(data);
+      if (error) console.error(error);
     }
-
     fetchStop();
   }, [slug]);
 
   if (!stop) {
     return (
-      <div style={{ padding: '2rem', fontFamily: 'Merriweather, serif' }}>
-        <h2>Loading or no data...</h2>
-        <p>Slug: {slug}</p>
-      </div>
-    );
-  }
-
-  return (
-    <div
-      style={{
+      <div style={{
         padding: '2rem',
         fontFamily: 'Merriweather, serif',
-        backgroundImage: 'url(/saltisford-logo.jpg)',
+        backgroundImage: 'url("/saltisford-logo.jpg")',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center top',
@@ -52,20 +32,29 @@ function StopPage() {
         backgroundColor: '#2d4b34',
         color: '#f5f5dc',
         textAlign: 'center',
-      }}
-    >
+      }}>
+        <h2>Loading or no data...</h2>
+        <p>Slug: {slug}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{
+      padding: '2rem',
+      fontFamily: 'Merriweather, serif',
+      backgroundImage: 'url("/saltisford-logo.jpg")',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center top',
+      minHeight: '100vh',
+      backgroundColor: '#2d4b34',
+      color: '#f5f5dc',
+      textAlign: 'center',
+    }}>
       <h1 style={{ marginBottom: '2rem' }}>{stop.title}</h1>
-      <audio
-        controls
-        src={stop.audio_url}
-        style={{
-          width: '90%',
-          maxWidth: '600px',
-          marginBottom: '2rem',
-          borderRadius: '10px',
-        }}
-      />
-      <p>{stop.description}</p>
+      <audio controls src={stop.audio_url} style={{ width: '90%' }} />
+      <p style={{ marginTop: '1.5rem' }}>{stop.description}</p>
     </div>
   );
 }
