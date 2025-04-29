@@ -14,10 +14,16 @@ function StopPage() {
         .eq('slug', slug)
         .single();
 
+      console.log("🔍 Fetching stop for slug:", slug);
+      console.log("📦 Data:", data);
+      console.log("⚠️ Error:", error);
+
+      if (error) {
+        console.error("🚨 Supabase error:", error.message);
+      }
+
       if (data) {
         setStop(data);
-      } else {
-        console.error('Error fetching stop:', error);
       }
     }
 
@@ -26,7 +32,7 @@ function StopPage() {
 
   if (!stop) {
     return (
-      <div style={{ padding: '2rem' }}>
+      <div style={{ padding: '2rem', fontFamily: 'Merriweather, serif', textAlign: 'center' }}>
         <h2>Loading or no data...</h2>
         <p>Slug: {slug}</p>
       </div>
@@ -38,10 +44,13 @@ function StopPage() {
       style={{
         padding: '2rem',
         fontFamily: 'Merriweather, serif',
-        backgroundImage: 'url("./saltisford-logo.jpg")',
+        backgroundImage: 'url("/saltisford-logo.jpg")',
+        // Test background (uncomment this to debug):
+        // backgroundImage: 'url("https://via.placeholder.com/600x600")',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center top',
+        backgroundAttachment: 'fixed',
         minHeight: '100vh',
         backgroundColor: '#2d4b34',
         color: '#f5f5dc',
@@ -52,7 +61,11 @@ function StopPage() {
       <audio
         controls
         src={stop.audio_url}
-        style={{ width: '90%', maxWidth: '600px', marginBottom: '1rem' }}
+        style={{
+          width: '90%',
+          maxWidth: '500px',
+          marginBottom: '2rem',
+        }}
       />
       <p>{stop.description}</p>
     </div>
@@ -60,3 +73,4 @@ function StopPage() {
 }
 
 export default StopPage;
+
