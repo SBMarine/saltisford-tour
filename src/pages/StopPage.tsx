@@ -32,8 +32,16 @@ function StopPage() {
 
   if (!stop) {
     return (
-      <div style={{ padding: '2rem', fontFamily: 'Merriweather, serif', textAlign: 'center' }}>
-        <h2>Loading or no data...</h2>
+      <div
+        style={{
+          padding: '2rem',
+          fontFamily: 'Merriweather, serif',
+          backgroundColor: '#f5f5dc',
+          minHeight: '100vh',
+          textAlign: 'center',
+        }}
+      >
+        <h2>Loading or no data…</h2>
         <p>Slug: {slug}</p>
       </div>
     );
@@ -45,16 +53,18 @@ function StopPage() {
         padding: '2rem',
         fontFamily: 'Merriweather, serif',
         backgroundImage: 'url("/saltisford-logo.jpg")',
-        // Test background (uncomment this to debug):
-        // backgroundImage: 'url("https://via.placeholder.com/600x600")',
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center top',
-        backgroundAttachment: 'fixed',
-        minHeight: '100vh',
-        backgroundColor: '#2d4b34',
-        color: '#f5f5dc',
+        backgroundPosition: 'center center',
+        backgroundColor: '#f5f5dc',
+        color: '#2d4b34',
         textAlign: 'center',
+        minHeight: '100vh',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <h1 style={{ marginBottom: '2rem' }}>{stop.title}</h1>
@@ -63,14 +73,15 @@ function StopPage() {
         src={stop.audio_url}
         style={{
           width: '90%',
-          maxWidth: '500px',
-          marginBottom: '2rem',
+          maxWidth: '400px',
+          marginBottom: '1.5rem',
         }}
       />
-      <p>{stop.description}</p>
+      <p style={{ maxWidth: '600px', lineHeight: '1.6' }}>{stop.description}</p>
     </div>
   );
 }
 
 export default StopPage;
+
 
